@@ -1,0 +1,33 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+int func1(int a, int b)
+{
+	return a + b;
+}
+int func2(int a, int b)
+{
+	return a - b;
+}
+int func3(int a, int b)
+{
+	return a *b;
+}
+int func4(int a, int b)
+{
+	return a / b;
+}
+void computer(int a, int b, int(*p)(int, int))
+{
+	cout << p(a, b) << endl;
+}
+int  main()
+{
+	int i = 5, j = 10;
+	decltype(func1) *p1= func1, *p2 = func2, *p3 = func3, *p4 = func4;
+	vector<decltype(func1)*>vf = { p1,p2,p3,p4 };//函数和数组都要加*
+
+	for (auto p : vf)
+		computer(i,j,p) ;
+	return 0;
+}
